@@ -4,7 +4,7 @@
     if (req.query.name || (req.body && req.body.name)) {
         context.res = {
             // status: 200, /* Defaults to 200 */
-            body: "Hello " + (req.query.name || req.body.name)
+            body: "Hello " + (req.query.name || req.body.name) + " we can deploy"
         };
     }
     else {
