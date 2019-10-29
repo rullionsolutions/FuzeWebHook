@@ -22,17 +22,17 @@ module.exports = function (context, req) {
             duration: call.duration,
 
             from_number: call.from.number,
-            from_number_e164: from.number_e164,
-            from_name: from.name || "",
-            from_userId: from.userId || "",
+            from_number_e164: call.from.number_e164,
+            from_name: call.from.name || "",
+            from_userId: call.from.userId || "",
             
 
             to_number: call.to.number,
-            to_number_e164: to.number_e164,
-            to_name: to.name || "",
-            to_userId: to.userId || "",
+            to_number_e164: call.to.number_e164,
+            to_name: call.to.name || "",
+            to_userId: call.to.userId || "",
             
-            departmentName: from.departmentName || to.departmentName
+            departmentName: call.from.departmentName || call.to.departmentName
         };
 
 
