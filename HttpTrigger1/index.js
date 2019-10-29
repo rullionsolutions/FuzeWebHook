@@ -10,9 +10,9 @@ module.exports = function (context, req) {
     if (req.query.name || (req.body && req.body.name)) {
         
         const item = { 
-            name = (req.query.name || req.body.name) 
+            name: (req.query.name || req.body.name) 
         };
-        
+
         item["PartitionKey"] = "Partition";
         item["RowKey"] = uuid();
 
