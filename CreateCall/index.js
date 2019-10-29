@@ -7,7 +7,7 @@ const tableName = "calls";
 module.exports = function (context, req) {
     context.log('Recieved call back from Fuze');
     context.log(req.body);
-    if (req.body.call && req.body.call.linkedId) {
+    if (req.body.content && req.body.content.linkedId) {
         
         var call = req.body.call;
 
