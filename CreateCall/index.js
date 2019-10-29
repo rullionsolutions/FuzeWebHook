@@ -12,13 +12,14 @@ module.exports = function (context, req) {
         var retrievalId = req.body.retrievalId;
         var call = req.body.content;
         var userId = call.from.userId || call.to.userid;
+        var rowKey = uuid();
 
         //remove this once we understand the content properly
         //context.log(call);
 
         const item = { 
             PartitionKey: call.direction,
-            RowKey: retrievalId,
+            RowKey: rowKey, //retrievalId, getting duplicates for some reason using a temp uid
 
             startedAt: call.startedAt,
             endedAt: call.endedAt,
