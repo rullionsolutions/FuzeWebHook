@@ -14,13 +14,13 @@ module.exports = function (context, req) {
         item["RowKey"] = uuid();
 
         // Use { echoContent: true } if you want to return the created item including the Timestamp & etag
-        tableService.insertEntity(tableName, item, { echoContent: true }, function (error, result, response) {
-            if (!error) {
-                context.res.status(201).json(response);
-            } else {
-                context.res.status(500).json({ error: error });
-            }
-        });
+        //tableService.insertEntity(tableName, item, { echoContent: true }, function (error, result, response) {
+        //    if (!error) {
+        //        context.res.status(201).json(response);
+        //    } else {
+        //        context.res.status(500).json({ error: error });
+        //    }
+        //});
 
         context.res.body = "Hello " + (req.query.name || req.body.name) + " we have saved something";
     }
