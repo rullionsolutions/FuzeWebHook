@@ -9,7 +9,7 @@ module.exports = function (context, req) {
     context.log(req.body);
     if (req.body.content && req.body.content.linkedId) {
         
-        var call = req.body.call;
+        var call = req.body.content;
 
         //remove this once we understand the content properly
         //context.log(call);
@@ -19,7 +19,20 @@ module.exports = function (context, req) {
             RowKey: call.linkedId,
             startedAt: call.startedAt,
             endedAt: call.endedAt,
-            duration: call.duration
+            duration: call.duration,
+
+            from_number: call.from.number,
+            from_number_e164: from.number_e164,
+            from_name: from.name || "",
+            from_userId: from.userId || "",
+            
+
+            to_number: call.to.number,
+            to_number_e164: to.number_e164,
+            to_name: to.name || "",
+            to_userId: to.userId || "",
+            
+            departmentName: from.departmentName || to.departmentName
         };
 
 
