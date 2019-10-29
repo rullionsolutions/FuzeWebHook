@@ -6,13 +6,13 @@ const tableName = "calls";
 
 module.exports = function (context, req) {
     context.log('Recieved call back from Fuze');
-
+    context.log(req.body);
     if (req.body.call && req.body.call.linkedId) {
         
         var call = req.body.call;
 
         //remove this once we understand the content properly
-        context.log(call);
+        //context.log(call);
 
         const item = { 
             PartitionKey: call.direction,
