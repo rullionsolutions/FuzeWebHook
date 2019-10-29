@@ -9,6 +9,7 @@ module.exports = function (context, req) {
     context.log(req.body);
     if (req.body.content && req.body.content.linkedId) {
         
+        var retrievalId = req.body.retrievalId;
         var call = req.body.content;
 
         //remove this once we understand the content properly
@@ -16,7 +17,8 @@ module.exports = function (context, req) {
 
         const item = { 
             PartitionKey: call.direction,
-            RowKey: call.linkedId,
+            RowKey: retrievalId,
+
             startedAt: call.startedAt,
             endedAt: call.endedAt,
             duration: call.duration,
