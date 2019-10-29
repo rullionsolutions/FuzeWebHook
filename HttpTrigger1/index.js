@@ -2,7 +2,7 @@
 const uuid = require('uuid/v1');
 
 const tableService = azure.createTableService();
-const tableName = "mytable";
+const tableName = "calls";
 
 module.exports = function (context, req) {
     //context.log('JavaScript HTTP trigger function processed a request.');
