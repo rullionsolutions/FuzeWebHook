@@ -37,7 +37,7 @@ module.exports = function (context, req) {
             to_userId: call.to.userId || "",
             
             name: call.from.name || call.to.name,
-            userid : call.from.userId || call.to.userid,
+            userid : call.from.userId || call.to.userId,
 
             departmentName: call.from.departmentName || call.to.departmentName
         };
