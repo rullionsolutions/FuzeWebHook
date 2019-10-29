@@ -5,27 +5,46 @@ const tableService = azure.createTableService();
 const tableName = "mytable";
 
 module.exports = function (context, req) {
-    context.log('JavaScript HTTP trigger function processed a request.');
+    //context.log('JavaScript HTTP trigger function processed a request.');
 
-    if (req.query.name || (req.body && req.body.name)) {
+    if (req.body.call && req.body.call.linkedId) {
         
+        var call = req.body.call;
+
         const item = { 
-            name: (req.query.name || req.body.name) 
+            PartitionKey: call.direction,
+            RowKey: call.linkedId,
+            startedAt: call.startedAt,
+            endedAt: call.endedAt,
+            duration: call.duration
         };
 
-        item["PartitionKey"] = "Partition";
-        item["RowKey"] = uuid();
+
+        //from.number
+        //from.number_e164
+        //from.name
+        //from.userId
+        //from.departmentName
+
+        //to.number
+        //to.number_e164
+        //to.name
+        //to.userId
+        //to.departmentName
+
+        //item["PartitionKey"] = "Partition";
+        //item["RowKey"] = uuid();
+
 
         // Use { echoContent: true } if you want to return the created item including the Timestamp & etag
-        tableService.insertEntity(tableName, item, { echoContent: true }, function (error, result, response) {
+        tableService.insertEntity(tableName, item, { echoContent: false }, function (error, result, response) {
             if (!error) {
                 context.res.status(201).json(response);
             } else {
+                context.log(error);
                 context.res.status(500).json({ error: error });
             }
         });
-
-        //context.res.body = "Hello " + (req.query.name || req.body.name) + " we have saved something";
     }
     else {
         context.res = {
