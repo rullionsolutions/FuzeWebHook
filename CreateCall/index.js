@@ -6,11 +6,12 @@ const tableName = "calls";
 
 module.exports = function (context, req) {
     context.log('Recieved call back from Fuze');
-    context.log(req.body);
+    
     if (req.body.content && req.body.content.linkedId) {
         
         var retrievalId = req.body.retrievalId;
         var call = req.body.content;
+        var userId = call.from.userId || call.ti.userid;
 
         //remove this once we understand the content properly
         //context.log(call);
@@ -40,27 +41,12 @@ module.exports = function (context, req) {
             departmentName: call.from.departmentName || call.to.departmentName
         };
 
-
-        //from.number
-        //from.number_e164
-        //from.name
-        //from.userId
-        //from.departmentName
-
-        //to.number
-        //to.number_e164
-        //to.name
-        //to.userId
-        //to.departmentName
-
-        //We may need to derive the user no matter the direction?
-
         //item["RowKey"] = uuid();
-
 
         // Use { echoContent: true } if you want to return the created item including the Timestamp & etag
         tableService.insertEntity(tableName, item, { echoContent: false }, function (error, result, response) {
             if (!error) {
+                context.log("Saved the call " + userId);
                 context.res.status(201).json(response);
             } else {
                 context.log(error);
