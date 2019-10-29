@@ -5,11 +5,14 @@ const tableService = azure.createTableService();
 const tableName = "calls";
 
 module.exports = function (context, req) {
-    //context.log('JavaScript HTTP trigger function processed a request.');
+    context.log('Recieved call back from Fuze');
 
     if (req.body.call && req.body.call.linkedId) {
         
         var call = req.body.call;
+
+        //remove this once we understand the content properly
+        context.log(call);
 
         const item = { 
             PartitionKey: call.direction,
@@ -32,7 +35,8 @@ module.exports = function (context, req) {
         //to.userId
         //to.departmentName
 
-        //item["PartitionKey"] = "Partition";
+        //We may need to derive the user no matter the direction?
+
         //item["RowKey"] = uuid();
 
 
@@ -49,7 +53,7 @@ module.exports = function (context, req) {
     else {
         context.res = {
             status: 400,
-            body: "Please pass a name on the query string or in the request body"
+            body: "no call.linkedId found in the body of the request"
         };
         context.done();
     }
