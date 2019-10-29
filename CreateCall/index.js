@@ -9,7 +9,7 @@ module.exports = function (context, req) {
     
     if (req.body.content && req.body.content.linkedId) {
         
-        var retrievalId = req.body.retrievalId;
+        //var retrievalId = req.body.retrievalId;
         var call = req.body.content;
         var userId = call.from.userId || call.to.userid;
         var rowKey = uuid();
@@ -17,9 +17,11 @@ module.exports = function (context, req) {
         //remove this once we understand the content properly
         //context.log(call);
 
-        const item = { 
+        const item = {
             PartitionKey: call.direction,
             RowKey: rowKey, //retrievalId, getting duplicates for some reason using a temp uid
+
+            linkedId: call.linkedId,
 
             startedAt: call.startedAt,
             endedAt: call.endedAt,
