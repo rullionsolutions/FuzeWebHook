@@ -25,14 +25,13 @@ module.exports = function (context, req) {
             }
         });
 
-        context.res.body = "Hello " + (req.query.name || req.body.name) + " we have saved something";
+        //context.res.body = "Hello " + (req.query.name || req.body.name) + " we have saved something";
     }
     else {
         context.res = {
             status: 400,
             body: "Please pass a name on the query string or in the request body"
         };
+        context.done();
     }
-
-    context.done();
 };
