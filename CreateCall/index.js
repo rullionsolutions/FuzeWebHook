@@ -11,7 +11,7 @@ module.exports = function (context, req) {
         
         var retrievalId = req.body.retrievalId;
         var call = req.body.content;
-        var userId = call.from.userId || call.ti.userid;
+        var userId = call.from.userId || call.to.userid;
 
         //remove this once we understand the content properly
         //context.log(call);
@@ -36,7 +36,7 @@ module.exports = function (context, req) {
             to_userId: call.to.userId || "",
             
             name: call.from.name || call.to.name,
-            userid : call.from.userId || call.ti.userid,
+            userid : call.from.userId || call.to.userid,
 
             departmentName: call.from.departmentName || call.to.departmentName
         };
