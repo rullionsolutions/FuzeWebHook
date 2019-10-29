@@ -34,6 +34,9 @@ module.exports = function (context, req) {
             to_name: call.to.name || "",
             to_userId: call.to.userId || "",
             
+            name: call.from.name || call.to.name,
+            userid : call.from.userId || call.ti.userid,
+
             departmentName: call.from.departmentName || call.to.departmentName
         };
 
